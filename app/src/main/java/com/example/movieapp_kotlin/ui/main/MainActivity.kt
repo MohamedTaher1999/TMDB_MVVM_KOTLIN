@@ -1,7 +1,8 @@
-package com.example.movieapp_kotlin
+package com.example.movieapp_kotlin.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.movieapp_kotlin.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
