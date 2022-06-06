@@ -1,4 +1,6 @@
 package com.example.movieapp_kotlin
 
-class BaseApplication {
+import android.app.Application
+
+class BaseApplication :Application() {
 }
