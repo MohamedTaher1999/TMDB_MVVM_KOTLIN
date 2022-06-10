@@ -8,7 +8,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.*
 import com.example.movieapp_kotlin.R
 import com.google.android.material.navigation.NavigationView
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
 

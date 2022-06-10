@@ -1,4 +1,9 @@
 package com.example.movieapp_kotlin.data
 
-class DataRepositort {
+import javax.inject.Inject
+
+class DataRepositort
+@Inject
+constructor()
+{
 }
