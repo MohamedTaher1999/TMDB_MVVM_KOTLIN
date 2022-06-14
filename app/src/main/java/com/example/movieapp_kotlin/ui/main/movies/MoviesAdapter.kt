@@ -1,7 +1,5 @@
 package com.example.movieapp_kotlin.ui.main.movies
 
-import android.os.Parcel
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,21 +7,20 @@ import androidx.databinding.DataBindingUtil
 import com.example.movieapp_kotlin.BR
 import com.example.movieapp_kotlin.R
 import com.example.movieapp_kotlin.data.model.Moviedata
-import com.example.movieapp_kotlin.databinding.FilmcardBinding
+import com.example.movieapp_kotlin.databinding.MovieCardBinding
 import com.example.movieapp_kotlin.ui.base.BaseItemListener
 import com.example.movieapp_kotlin.ui.base.BasePagedListAdapter
-import com.example.movieapp_kotlin.ui.base.BaseRecyclerViewAdapter
 import com.example.movieapp_kotlin.ui.base.BaseViewHolder
 
 class MoviesAdapter(val itemListener: MoviesAdapterListener): BasePagedListAdapter()
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder{
-        return MoviesViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context) , R.layout.filmcard , parent , false))
+        return MoviesViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context) , R.layout.movie_card , parent , false))
     }
 
     interface MoviesAdapterListener : BaseItemListener<Moviedata>
 
-    inner class MoviesViewHolder(private var itemMovieBinding: FilmcardBinding) : BaseViewHolder(itemMovieBinding.root) , MovieItemViewModel.MovieItemClickListener{
+    inner class MoviesViewHolder(private var itemMovieBinding: MovieCardBinding) : BaseViewHolder(itemMovieBinding.root) , MovieItemViewModel.MovieItemClickListener{
 
         private lateinit var movieItemViewModel: MovieItemViewModel
 

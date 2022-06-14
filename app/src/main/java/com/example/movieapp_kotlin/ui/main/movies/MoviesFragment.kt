@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.example.movieapp_kotlin.R
 import com.example.movieapp_kotlin.databinding.FragmentMoviesBinding
 import com.example.movieapp_kotlin.ui.base.BaseFragment
@@ -15,7 +16,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import com.example.movieapp_kotlin.BR
 import com.example.movieapp_kotlin.data.model.Moviedata
 import com.example.tmdbcleanarchitecture.utils.GridLayoutManagerWrapper
-import com.example.tmdbcleanarchitecture.utils.GridSpacingItemDecorationUtils
 
 
 @AndroidEntryPoint
@@ -29,13 +29,13 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding, MoviesViewModel>() , 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initMoviesRecyclerView(2, 25)
+        initMoviesRecyclerView()
 
 
 
     }
-    private fun initMoviesRecyclerView(spanCount: Int, spacing: Int) {
-        val gridLayoutManager = GridLayoutManagerWrapper(getMContext(), spanCount)
+    private fun initMoviesRecyclerView() {
+        val gridLayoutManager = GridLayoutManagerWrapper(getMContext(), 2)
         getViewDataBinding().moviesRecycleView.layoutManager = gridLayoutManager
         getViewDataBinding().moviesRecycleView.setHasFixedSize(true)
         // set Animation to all children (items) of this Layout
@@ -44,8 +44,8 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding, MoviesViewModel>() , 
         getViewDataBinding().moviesRecycleView.layoutAnimation = animation
         // equal spaces between grid items
         val includeEdge = true
-        val gridSpacingItemDecorationUtils = GridSpacingItemDecorationUtils(spanCount , spacing , includeEdge)
-        getViewDataBinding().moviesRecycleView.addItemDecoration(gridSpacingItemDecorationUtils)
+
+
         getViewDataBinding().moviesRecycleView.adapter = moviesAdapter
     }
 
@@ -59,7 +59,11 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding, MoviesViewModel>() , 
     }
 
     override fun onItemClick(view: View, item: Moviedata) {
-        TODO("Not yet implemented")
+        view.transitionName = item.poster_path
+
+        val extras = FragmentNavigatorExtras(view to item.poster_path.toString())
+      //  val action = MoviesFragmentD
+      //  getNavController().navigate(action,extras)
     }
 
 

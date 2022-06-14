@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_detailsFragment_self"
             app:destination="@id/detailsFragment" />
+        <argument
+            android:name="selectedMovie"
+            app:argType="com.example.movieapp_kotlin.data.model.Moviedata" />
 
     </fragment>
     <fragment
