@@ -20,21 +20,6 @@
 
     </fragment>
     <fragment
-        android:id="@+id/Now_Playing_item"
-        android:name="com.example.movieapp_kotlin.ui.main.movies.MoviesFragment"
-        android:label="Now Playing Movies"
-        tools:layout="@layout/fragment_movies"
-        >
-        <action
-            android:id="@+id/action_MoviesFragment_To_MovieDetailsFragment"
-            app:destination="@id/detailsFragment"
-            app:enterAnim="@anim/slide_in_right" />
-        <argument
-            android:name="categoryType"
-            app:argType="string"
-            android:defaultValue="now_playing" />
-    </fragment>
-    <fragment
         android:id="@+id/Populor_item"
         android:name="com.example.movieapp_kotlin.ui.main.movies.MoviesFragment"
         android:label="Popular Movies"
@@ -94,4 +79,20 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left" />
     </fragment>
+    <fragment
+        android:id="@+id/Now_Playing_item"
+        android:name="com.example.movieapp_kotlin.ui.main.movies.MoviesFragment"
+        android:label="Now Playing Movies"
+        tools:layout="@layout/fragment_movies"
+        >
+        <action
+            android:id="@+id/action_MoviesFragment_To_MovieDetailsFragment"
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/slide_in_right" />
+        <argument
+            android:name="categoryType"
+            app:argType="string"
+            android:defaultValue="now_playing" />
+    </fragment>
+
 </navigation>

@@ -62,8 +62,8 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding, MoviesViewModel>() , 
         view.transitionName = item.poster_path
 
         val extras = FragmentNavigatorExtras(view to item.poster_path.toString())
-      //  val action = MoviesFragmentD
-      //  getNavController().navigate(action,extras)
+        val action = MoviesFragmentDirections.actionMoviesFragmentToMovieDetailsFragment(item)
+        getNavController().navigate(action,extras)
     }
 
 
