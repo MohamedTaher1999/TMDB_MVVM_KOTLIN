@@ -11,7 +11,7 @@ import com.example.movieapp_kotlin.BR
 import com.example.movieapp_kotlin.data.model.Moviedata
 import com.example.movieapp_kotlin.databinding.FragmentFavouriteMovieBinding
 import com.example.movieapp_kotlin.ui.main.movies.FavouriteMovieAdapter
-import com.example.tmdbcleanarchitecture.utils.GridLayoutManagerWrapper
+import com.example.movieapp_kotlin.utils.GridLayoutManagerWrapper
 
 
 @AndroidEntryPoint

@@ -1,4 +1,4 @@
-package com.example.tmdbcleanarchitecture.utils
+package com.example.movieapp_kotlin.utils
 
 import android.content.Context
 import android.util.Log
