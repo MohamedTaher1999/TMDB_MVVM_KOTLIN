@@ -5,24 +5,35 @@ import android.widget.Toast
 import androidx.paging.PageKeyedDataSource
 import androidx.paging.PagedList
 import com.example.movieapp_kotlin.data.model.Moviedata
+import com.example.movieapp_kotlin.data.remote.client.ApiClient
+import com.example.movieapp_kotlin.data.remote.client.WebServices
+import dagger.assisted.AssistedInject
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-
-
-class MovieDataSource(val category: String) : PageKeyedDataSource<Int, Moviedata>()
+class MovieDataSource
+constructor( private val webServices: WebServices): PageKeyedDataSource<Int, Moviedata>()
 {
+    private val page = ApiClient.FIRST_PAGE
+
+    private val coroutineExceptionHandler = CoroutineExceptionHandler{_ , throwable ->
+        Log.i("Here" , "Response Handler Issue: " + throwable.localizedMessage)
+    }
+
     override fun loadInitial(
         params: LoadInitialParams<Int>,
-        callback: LoadInitialCallback<Int, Moviedata>
+        callback:LoadInitialCallback<Int, Moviedata>
     ) {
-        val x: MutableList<Moviedata> = arrayListOf()
-        var genres:ArrayList<String>?=null
-        genres?.add("1")
-        x.add(Moviedata("dsd","dsd","dsd","dsd","dsd","dsd","dsd","dsd","dsd",genres,"dsd","dsd","dsd","dsd"))
-        x.add(Moviedata("dsd","dsd","dsd","dsd","dsd","dsd","dsd","dsd","dsd",genres,"dsd","dsd","dsd","dsd"))
-        x.add(Moviedata("dsd","dsd","dsd","dsd","dsd","dsd","dsd","dsd","dsd",genres,"dsd","dsd","dsd","dsd"))
-        x.add(Moviedata("dsd","dsd","dsd","dsd","dsd","dsd","dsd","dsd","dsd",genres,"dsd","dsd","dsd","dsd"))
 
-       callback.onResult(x,null,1)
+
+        GlobalScope.launch (coroutineExceptionHandler){
+            val moviesList =  webServices.getMovies("upcoming" ,
+                ApiClient.API_KEY , ApiClient.LANGUAGE ,
+                page).results
+            callback.onResult(moviesList , null , page + 1)
+        }
 
     }
 

@@ -21,9 +21,8 @@ object BindingUtils {
     @JvmStatic
     @BindingAdapter("android:posterSrc")
     fun setMoviePosterSrc(posterImage: ImageView, posterPath : String?){
-        val moviePosterURL = "https://alwafd.news/images/thumbs/828/news/f984e83ce5b2fcfd0441e5e2d5dac729.jpg"
         Glide.with(posterImage.context)
-            .load(moviePosterURL)
+            .load(ApiClient.POSTER_BASE_URL+posterPath)
             .into(posterImage);
     }
     @Suppress("UNCHECKED_CAST")

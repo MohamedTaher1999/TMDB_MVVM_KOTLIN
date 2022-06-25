@@ -13,17 +13,20 @@ import com.example.movieapp_kotlin.R
 import com.example.movieapp_kotlin.databinding.FragmentDetailsBinding
 import com.example.movieapp_kotlin.ui.base.BaseFragment
 import com.example.movieapp_kotlin.BR
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MovieDetailsFragment :BaseFragment<FragmentDetailsBinding,MovieDetailsViewModel>() {
 
     private val movieDetailsViewModel : MovieDetailsViewModel by viewModels()
 
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //val args = Detalis.fromBundle(requireArguments())
+        val args = MovieDetailsFragmentArgs.fromBundle(requireArguments())
        // movieDetailsViewModel =  getViewModel{ parametersOf(SavedStateHandle(mapOf(AppConstants.SELECTED_MOVIE to args.selectedMovie)))}
     }
 
