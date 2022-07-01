@@ -47,7 +47,7 @@
                         android:id="@+id/movie_background"
                         android:layout_width="match_parent"
                         android:layout_height="350dp"
-                        android:backPosterUrl="@{detailsViewModel.movieDetailsLiveData.backdrop_path}"
+                        android:backPosterUrl="@{detailsViewModel.movieDetailsLiveData.backdropPath}"
                         android:contentDescription="@string/app_name"
                         android:scaleType="centerCrop"
                         app:layout_collapseMode="parallax"
@@ -102,7 +102,7 @@
                             android:layout_marginLeft="10dp"
                             android:transitionName="simple_activity_transition"
                             android:scaleType="fitXY"
-                            android:posterSrc="@{detailsViewModel.movieDetailsLiveData.poster_path}"
+                            android:posterSrc="@{detailsViewModel.movieDetailsLiveData.posterPath}"
                             app:srcCompat="@color/goldenText" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -116,7 +116,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginTop="16dp"
-                                android:text="@{detailsViewModel.movieDetailsLiveData.original_title}"                                android:textColor="@color/dText"
+                                android:text="@{detailsViewModel.movieDetailsLiveData.originalTitle}"                                android:textColor="@color/dText"
                                 android:textSize="20dp"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="1.0"
@@ -128,7 +128,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
-                                android:setMovieCategory="@{detailsViewModel.movieDetailsLiveData.genres}"
+                                android:setMovieCategory="@{detailsViewModel.movieDetailsLiveData.categories}"
                                 android:textColor="@color/dText"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.13"
@@ -184,7 +184,7 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/linearLayout"
                                 app:layout_constraintVertical_bias="0.0"
-                                android:setRate="@{detailsViewModel.movieDetailsLiveData.vote_average}"
+                                android:setRate="@{detailsViewModel.movieDetailsLiveData.voteAverage}"
                                 />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>

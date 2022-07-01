@@ -19,11 +19,11 @@ constructor(val dataRepositort: DataRepository): BaseViewModel(dataRepositort)
         val test:MutableList<Moviedata> = arrayListOf()
         var genres:ArrayList<String>?=null
         genres?.add("1")
-        favoriteMoviesList.value?.add(Moviedata("taher","dsd","dsd","dsd","dsd","dsd","dsd","dsd","dsd",genres,"dsd","dsd","dsd","dsd"))
-        favoriteMoviesList.value?.add(Moviedata("dsd","dsd","dsd","dsd","dsd","dsd","dsd","dsd","dsd",genres,"dsd","dsd","dsd","dsd"))
-        favoriteMoviesList.value?.add(Moviedata("dsd","dsd","dsd","dsd","dsd","dsd","dsd","dsd","dsd",genres,"dsd","dsd","dsd","dsd"))
-        favoriteMoviesList.value?.add(Moviedata("dsd","dsd","dsd","dsd","dsd","dsd","dsd","dsd","dsd",genres,"dsd","dsd","dsd","dsd"))
-        favoriteMoviesList.value?.add(Moviedata("dsd","dsd","dsd","dsd","dsd","dsd","dsd","dsd","dsd",genres,"dsd","dsd","dsd","dsd"))
+        favoriteMoviesList.value?.add(Moviedata("taher","dsd","dsd","dsd",1,"dsd","dsd","dsd","dsd",genres,"dsd","dsd","dsd","dsd"))
+        favoriteMoviesList.value?.add(Moviedata("dsd","dsd","dsd","dsd",2,"dsd","dsd","dsd","dsd",genres,"dsd","dsd","dsd","dsd"))
+        favoriteMoviesList.value?.add(Moviedata("dsd","dsd","dsd","dsd",3,"dsd","dsd","dsd","dsd",genres,"dsd","dsd","dsd","dsd"))
+        favoriteMoviesList.value?.add(Moviedata("dsd","dsd","dsd","dsd",4,"dsd","dsd","dsd","dsd",genres,"dsd","dsd","dsd","dsd"))
+        favoriteMoviesList.value?.add(Moviedata("dsd","dsd","dsd","dsd",5,"dsd","dsd","dsd","dsd",genres,"dsd","dsd","dsd","dsd"))
         favoriteMoviesList.value=favoriteMoviesList.value
         Log.e("taher",favoriteMoviesList.toString())
     }

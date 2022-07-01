@@ -6,7 +6,11 @@ import javax.inject.Inject
 
 class DataRepository
 @Inject
-constructor(private val webServices: WebServices){
+constructor(private val webServices: WebServices,private val apiRepository: ApiRepository){
+
+
+    fun getApiRepository():ApiRepository=apiRepository
+
 
 
 

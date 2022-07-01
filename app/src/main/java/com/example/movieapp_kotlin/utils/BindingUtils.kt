@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.movieapp_kotlin.R
 import com.example.movieapp_kotlin.data.model.Genres
 import com.example.movieapp_kotlin.data.model.Moviedata
+import com.example.movieapp_kotlin.data.model.movie_details.Category
 import com.example.movieapp_kotlin.data.remote.client.ApiClient
 import com.example.movieapp_kotlin.ui.base.BaseRecyclerViewAdapter
 import com.example.movieapp_kotlin.ui.main.movies.MoviesAdapter
@@ -55,7 +56,7 @@ object BindingUtils {
     @Suppress("UNCHECKED_CAST")
     @JvmStatic
     @BindingAdapter("android:setMovieCategory")
-    fun setMovieCategory(movieCatagories:TextView, genres: List<Genres>?) {
+    fun setMovieCategory(movieCatagories:TextView, genres: List<Category>?) {
 
         var categoriesHolder = ""
         if(genres!=null){

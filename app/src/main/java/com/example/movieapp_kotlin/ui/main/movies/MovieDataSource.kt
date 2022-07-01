@@ -7,6 +7,7 @@ import androidx.paging.PagedList
 import com.example.movieapp_kotlin.data.model.Moviedata
 import com.example.movieapp_kotlin.data.remote.client.ApiClient
 import com.example.movieapp_kotlin.data.remote.client.WebServices
+import com.example.movieapp_kotlin.utils.AppConstants
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.GlobalScope
@@ -29,7 +30,8 @@ constructor( private val webServices: WebServices): PageKeyedDataSource<Int, Mov
 
 
         GlobalScope.launch (coroutineExceptionHandler){
-            val moviesList =  webServices.getMovies("upcoming" ,
+            val moviesList =  webServices.getMovies(
+                AppConstants.currentCategory ,
                 ApiClient.API_KEY , ApiClient.LANGUAGE ,
                 page).results
             callback.onResult(moviesList , null , page + 1)
@@ -42,7 +44,15 @@ constructor( private val webServices: WebServices): PageKeyedDataSource<Int, Mov
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Moviedata>) {
-
+        GlobalScope.launch (coroutineExceptionHandler){
+            val dataResponse = webServices.getMovies(AppConstants.currentCategory, ApiClient.API_KEY , ApiClient.LANGUAGE ,
+                params.key)
+            if (dataResponse.total_pages >= params.key){
+                callback.onResult(dataResponse.results , params.key + 1)
+            }else{
+                Log.i("Here" , "End of Pages")
+            }
+        }
     }
 
 }

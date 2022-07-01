@@ -15,6 +15,7 @@ import com.example.movieapp_kotlin.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.movieapp_kotlin.BR
 import com.example.movieapp_kotlin.data.model.Moviedata
+import com.example.movieapp_kotlin.utils.AppConstants
 import com.example.movieapp_kotlin.utils.GridLayoutManagerWrapper
 
 
@@ -24,7 +25,12 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding, MoviesViewModel>() , 
     private val moviesViewModel: MoviesViewModel by viewModels()
     private val moviesAdapter: MoviesAdapter =  MoviesAdapter(this)
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
+        val args = MoviesFragmentArgs.fromBundle(requireArguments())
+        AppConstants.currentCategory=args.categoryType
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -60,7 +66,7 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding, MoviesViewModel>() , 
 
     override fun onItemClick(view: View, item: Moviedata) {
         view.transitionName = item.poster_path
-
+        AppConstants.currentMovieId=item.id
         val extras = FragmentNavigatorExtras(view to item.poster_path.toString())
         val action = MoviesFragmentDirections.actionMoviesFragmentToMovieDetailsFragment(item)
         getNavController().navigate(action,extras)

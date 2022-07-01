@@ -5,6 +5,6 @@ import java.util.*
 class ResultsMovies(
     var page: String,
     var total_results: String,
-    var total_pages: String,
+    var total_pages: Int,
     var results: ArrayList<Moviedata>
 )

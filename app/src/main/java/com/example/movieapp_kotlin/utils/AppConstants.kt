@@ -1,4 +1,7 @@
 package com.example.movieapp_kotlin.utils
 
-class AppConstants {
+object AppConstants {
+    var currentCategory="now_playing"
+    var currentMovieId=0
+
 }

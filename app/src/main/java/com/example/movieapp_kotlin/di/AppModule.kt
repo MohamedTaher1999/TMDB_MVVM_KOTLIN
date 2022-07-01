@@ -1,5 +1,6 @@
 package com.example.movieapp_kotlin.di
 
+import com.example.movieapp_kotlin.data.remote.ApiRepository
 import com.example.movieapp_kotlin.data.remote.client.ApiClient
 import com.example.movieapp_kotlin.data.remote.client.WebServices
 import com.example.movieapp_kotlin.ui.main.movies.MovieDataSource
@@ -33,4 +34,10 @@ object AppModule {
     @Singleton
     fun provideMovieDataSourceFactoryInstance(movieDataSource: MovieDataSource): MovieDataSourceFactory =
         MovieDataSourceFactory(movieDataSource)
+
+    @Provides
+    @Singleton
+    fun provideApiRepositoryInstance(webServices : WebServices,movieDataSourceFactory: MovieDataSourceFactory): ApiRepository =
+        ApiRepository(webServices,movieDataSourceFactory)
+
 }

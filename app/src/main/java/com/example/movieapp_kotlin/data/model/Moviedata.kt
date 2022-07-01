@@ -26,7 +26,7 @@ class Moviedata : Serializable {
     var poster_path: String? = null
 
     @PrimaryKey
-    var id: String? = null
+    var id: Int = 0
 
     @Ignore
     var adult: String? = null
@@ -61,7 +61,7 @@ class Moviedata : Serializable {
         vote_count: String?,
         video: String?,
         poster_path: String?,
-        id: String,
+        id: Int,
         adult: String?,
         backdrop_path: String?,
         original_language: String?,

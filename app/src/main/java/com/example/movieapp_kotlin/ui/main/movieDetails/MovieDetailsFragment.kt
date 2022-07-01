@@ -26,7 +26,7 @@ class MovieDetailsFragment :BaseFragment<FragmentDetailsBinding,MovieDetailsView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val args = MovieDetailsFragmentArgs.fromBundle(requireArguments())
+       // val args = MovieDetailsFragmentArgs.fromBundle(requireArguments())
        // movieDetailsViewModel =  getViewModel{ parametersOf(SavedStateHandle(mapOf(AppConstants.SELECTED_MOVIE to args.selectedMovie)))}
     }
 
