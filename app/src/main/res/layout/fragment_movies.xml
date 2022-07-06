@@ -29,9 +29,8 @@
                 android:id="@+id/movie_loading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:layout_gravity="center"
-
+                android:visibility="@{moviesViewModel.isLoading ? View.VISIBLE : View.INVISIBLE}"
                 android:layout_marginStart="170dp"
                 android:layout_marginTop="292dp"
                 app:layout_constraintStart_toStartOf="parent"

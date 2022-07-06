@@ -50,8 +50,6 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding, MoviesViewModel>() , 
         getViewDataBinding().moviesRecycleView.layoutAnimation = animation
         // equal spaces between grid items
         val includeEdge = true
-
-
         getViewDataBinding().moviesRecycleView.adapter = moviesAdapter
     }
 

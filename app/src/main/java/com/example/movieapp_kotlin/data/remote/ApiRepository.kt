@@ -12,6 +12,8 @@ import com.example.movieapp_kotlin.ui.main.movies.MovieDataSourceFactory
 import javax.inject.Inject
 import javax.inject.Singleton
 import com.example.movieapp_kotlin.data.model.Result
+import com.example.movieapp_kotlin.data.model.ResultsMovies
+
 @Singleton
 class ApiRepository
 @Inject
@@ -39,6 +41,15 @@ constructor(private val webServices: WebServices,movieDataSourceFactory: MovieDa
          }
 
 
+    }
+
+    suspend fun fetchLiveSimilarMoviesList(movieID: Int) : Result<ResultsMovies>{
+        return try {
+            val dataResponse = webServices.getSimilarMovies(movieID , ApiClient.API_KEY , ApiClient.LANGUAGE , ApiClient.FIRST_PAGE)
+            Result.Success(dataResponse)
+        }catch (e : Exception){
+            Result.Error(e.localizedMessage)
+        }
     }
 
 

@@ -9,17 +9,21 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp_kotlin.R
 import com.example.movieapp_kotlin.databinding.FragmentDetailsBinding
 import com.example.movieapp_kotlin.ui.base.BaseFragment
 import com.example.movieapp_kotlin.BR
+import com.example.movieapp_kotlin.data.model.Moviedata
+import com.example.movieapp_kotlin.ui.main.movieDetails.similar_movies.SimilarMoviesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MovieDetailsFragment :BaseFragment<FragmentDetailsBinding,MovieDetailsViewModel>() {
+class MovieDetailsFragment :BaseFragment<FragmentDetailsBinding,MovieDetailsViewModel>(), SimilarMoviesAdapter.MoviesAdapterListener {
 
     private val movieDetailsViewModel : MovieDetailsViewModel by viewModels()
-
+    private val similarMoviesAdapter = SimilarMoviesAdapter(mutableListOf() , this)
 
 
 
@@ -38,7 +42,7 @@ class MovieDetailsFragment :BaseFragment<FragmentDetailsBinding,MovieDetailsView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        initRecyclerView(getViewDataBinding().rvSimilarMovies , similarMoviesAdapter , RecyclerView.HORIZONTAL)
     }
 
     private fun initToolbar() {
@@ -55,6 +59,11 @@ class MovieDetailsFragment :BaseFragment<FragmentDetailsBinding,MovieDetailsView
         }
     }
 
+    private fun initRecyclerView(recyclerView: RecyclerView, adapter: RecyclerView.Adapter<*>, orientation: Int) {
+        recyclerView.layoutManager = LinearLayoutManager(context, orientation, false)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.adapter = adapter
+    }
 
     override val layoutId: Int
         get() = R.layout.fragment_details
@@ -63,6 +72,10 @@ class MovieDetailsFragment :BaseFragment<FragmentDetailsBinding,MovieDetailsView
 
     override fun getViewModel(): MovieDetailsViewModel {
         return movieDetailsViewModel
+    }
+
+    override fun onItemClick(view: View, item: Moviedata) {
+        TODO("Not yet implemented")
     }
 
 }

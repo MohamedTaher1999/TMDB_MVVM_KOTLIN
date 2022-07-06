@@ -1,5 +1,6 @@
 package com.example.movieapp_kotlin.ui.main.movies
 
+import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.LivePagedListBuilder
@@ -18,7 +19,9 @@ constructor(val moviesDataSourceFactory: MovieDataSourceFactory,val dataReposito
 
     private var moviesPagesList : LiveData<PagedList<Moviedata>> = MutableLiveData()
 
+
     init {
+        setIsLoading(true)
         fetchMoviesPagedList()
     }
 
@@ -28,10 +31,8 @@ constructor(val moviesDataSourceFactory: MovieDataSourceFactory,val dataReposito
             .setEnablePlaceholders(false)
             .setPageSize(ApiClient.MOVIE_PER_PAGE)
             .build()
-      //  moviesPagesList = getDataManager().getApiRepository().fetchLiveMoviesPagedList(category)
-
-
         moviesPagesList = LivePagedListBuilder(moviesDataSourceFactory, config).build()
+        setIsLoading(false)
 
 
     }

@@ -25,10 +25,10 @@ interface WebServices {
     ): MovieDetails
 
     @GET("movie/{movie_id}/similar")
-    fun getSimilarMovies(
+    suspend fun getSimilarMovies(
         @Path("movie_id") id: Int,
         @Query("api_key") apiKey: String?,
         @Query("language") language: String?,
         @Query("page") page: Int
-    ): Single<ResultsMovies?>?
+    ): ResultsMovies
 }
