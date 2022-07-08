@@ -37,6 +37,7 @@
                 <com.google.android.material.appbar.CollapsingToolbarLayout
                     android:layout_width="match_parent"
                     android:id="@+id/collapsing_toolbar"
+                    app:title="@{detailsViewModel.movieDetailsLiveData.title}"
                     android:layout_height="250dp"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed"
                     app:contentScrim="?attr/colorPrimary"
@@ -58,7 +59,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
                         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                        android:title="tttttttt"
+
                         app:layout_collapseMode="pin"/>
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -68,7 +69,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="32dp"
-                android:src="@drawable/ic_un_favorite"
+                android:src="@{detailsViewModel.isFavoriteMovie() ? @drawable/ic_favorite : @drawable/ic_un_favorite}"
+                android:onClick="@{(view)->detailsViewModel.onFavoriteBtnClick()}"
 
                 app:elevation="6dp"
                 app:layout_anchor="@id/app_bar_layout"

@@ -8,10 +8,11 @@ import com.example.movieapp_kotlin.data.model.collection
 import com.example.movieapp_kotlin.data.model.Company
 import com.example.movieapp_kotlin.data.model.Country
 import com.example.movieapp_kotlin.data.model.Moviedata
+import com.example.movieapp_kotlin.utils.AppConstants
 import java.io.Serializable
 import java.util.ArrayList
 
-@Entity(tableName = "Movies")
+@Entity(tableName = AppConstants.DATABASE_NAME)
 class Moviedata : Serializable {
     @Ignore
     var popularity: String? = null

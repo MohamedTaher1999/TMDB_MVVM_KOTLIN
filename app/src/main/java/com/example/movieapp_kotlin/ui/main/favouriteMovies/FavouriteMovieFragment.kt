@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.example.movieapp_kotlin.R
 import com.example.movieapp_kotlin.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -11,6 +12,7 @@ import com.example.movieapp_kotlin.BR
 import com.example.movieapp_kotlin.data.model.Moviedata
 import com.example.movieapp_kotlin.databinding.FragmentFavouriteMovieBinding
 import com.example.movieapp_kotlin.ui.main.movies.FavouriteMovieAdapter
+import com.example.movieapp_kotlin.utils.AppConstants
 import com.example.movieapp_kotlin.utils.GridLayoutManagerWrapper
 
 
@@ -54,7 +56,12 @@ class FavouriteMovieFragment : BaseFragment<FragmentFavouriteMovieBinding, Favou
     }
 
     override fun onItemClick(view: View, item: Moviedata) {
-        TODO("Not yet implemented")
+
+        view.transitionName = item.poster_path
+        AppConstants.currentMovie=item
+        val extras = FragmentNavigatorExtras(view to item.poster_path.toString())
+        val action = FavouriteMovieFragmentDirections.actionFavouriteMovieFragmentToDetailsFragment(item)
+        getNavController().navigate(action,extras)
     }
 
 

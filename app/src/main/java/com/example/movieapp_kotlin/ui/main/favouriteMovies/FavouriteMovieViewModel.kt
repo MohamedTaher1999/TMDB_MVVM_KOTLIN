@@ -1,6 +1,7 @@
 package com.example.movieapp_kotlin.ui.main.favouriteMovies
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.movieapp_kotlin.data.DataRepository
 import com.example.movieapp_kotlin.data.model.Moviedata
@@ -13,19 +14,8 @@ class FavouriteMovieViewModel
 @Inject
 constructor(val dataRepositort: DataRepository): BaseViewModel(dataRepositort)
 {
-    val favoriteMoviesList = MutableLiveData<MutableList<Moviedata>>()
-    init {
-        favoriteMoviesList.value=ArrayList()
-        val test:MutableList<Moviedata> = arrayListOf()
-        var genres:ArrayList<String>?=null
-        genres?.add("1")
-        favoriteMoviesList.value?.add(Moviedata("taher","dsd","dsd","dsd",1,"dsd","dsd","dsd","dsd",genres,"dsd","dsd","dsd","dsd"))
-        favoriteMoviesList.value?.add(Moviedata("dsd","dsd","dsd","dsd",2,"dsd","dsd","dsd","dsd",genres,"dsd","dsd","dsd","dsd"))
-        favoriteMoviesList.value?.add(Moviedata("dsd","dsd","dsd","dsd",3,"dsd","dsd","dsd","dsd",genres,"dsd","dsd","dsd","dsd"))
-        favoriteMoviesList.value?.add(Moviedata("dsd","dsd","dsd","dsd",4,"dsd","dsd","dsd","dsd",genres,"dsd","dsd","dsd","dsd"))
-        favoriteMoviesList.value?.add(Moviedata("dsd","dsd","dsd","dsd",5,"dsd","dsd","dsd","dsd",genres,"dsd","dsd","dsd","dsd"))
-        favoriteMoviesList.value=favoriteMoviesList.value
-        Log.e("taher",favoriteMoviesList.toString())
+    val favoriteMoviesList : LiveData<MutableList<Moviedata>> by lazy{
+        getDataManager().getdatabaseRepository().getLiveFavoriteMovies()
     }
 
 }

@@ -2,9 +2,11 @@ package com.example.movieapp_kotlin.ui.main.movieDetails
 
 import android.os.Bundle
 import android.transition.TransitionInflater
+import android.transition.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
@@ -17,6 +19,7 @@ import com.example.movieapp_kotlin.ui.base.BaseFragment
 import com.example.movieapp_kotlin.BR
 import com.example.movieapp_kotlin.data.model.Moviedata
 import com.example.movieapp_kotlin.ui.main.movieDetails.similar_movies.SimilarMoviesAdapter
+import com.example.movieapp_kotlin.utils.AppConstants
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -46,6 +49,7 @@ class MovieDetailsFragment :BaseFragment<FragmentDetailsBinding,MovieDetailsView
     }
 
     private fun initToolbar() {
+        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
         val layout = getViewDataBinding().collapsingToolbar
         val toolbar = getViewDataBinding().toolbar
         val navController =
@@ -74,8 +78,20 @@ class MovieDetailsFragment :BaseFragment<FragmentDetailsBinding,MovieDetailsView
         return movieDetailsViewModel
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
+    }
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
+    }
+
+
     override fun onItemClick(view: View, item: Moviedata) {
-        TODO("Not yet implemented")
+        AppConstants.currentMovie=item
+        val action = MovieDetailsFragmentDirections.actionDetailsFragmentSelf(item)
+        getNavController().navigate(action)
     }
 
 }

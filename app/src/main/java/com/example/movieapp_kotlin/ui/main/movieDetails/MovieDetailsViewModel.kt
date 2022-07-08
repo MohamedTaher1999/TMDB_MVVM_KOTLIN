@@ -19,7 +19,7 @@ import com.example.movieapp_kotlin.data.model.ResultsMovies
 @HiltViewModel
 class MovieDetailsViewModel
 @Inject
-constructor(val dataRepositort:DataRepository) : BaseViewModel(dataRepositort) {
+constructor(val dataRepository:DataRepository) : BaseViewModel(dataRepository) {
 
     private val movieDetails : MutableLiveData<MovieDetails> = MutableLiveData()
     private val similarMoviesList : MutableLiveData<List<Moviedata>> = MutableLiveData()
@@ -37,7 +37,7 @@ constructor(val dataRepositort:DataRepository) : BaseViewModel(dataRepositort) {
 
     fun fetchMovieDetails( ){
         viewModelScope.launch(coroutineExceptionHandler) {
-            when(val result = getDataManager().getApiRepository().fetchLiveMovieDetailsData(AppConstants.currentMovieId)){
+            when(val result = getDataManager().getApiRepository().fetchLiveMovieDetailsData(AppConstants.currentMovie!!.id)){
                 is Result.Success<MovieDetails> -> {
                     movieDetails.value = result.data
                 }
@@ -50,7 +50,7 @@ constructor(val dataRepositort:DataRepository) : BaseViewModel(dataRepositort) {
     }
     fun fetchSimilarMovies(){
         viewModelScope.launch(coroutineExceptionHandler) {
-            when(val result = getDataManager().getApiRepository().fetchLiveSimilarMoviesList(AppConstants.currentMovieId)){
+            when(val result = getDataManager().getApiRepository().fetchLiveSimilarMoviesList(AppConstants.currentMovie!!.id)){
                 is Result.Success<ResultsMovies> -> {
                     similarMoviesList.value = result.data.results
                     Log.i("taher" , result.data.results.size.toString())
@@ -63,4 +63,16 @@ constructor(val dataRepositort:DataRepository) : BaseViewModel(dataRepositort) {
     }
     val similarMoviesLiveData : LiveData<List<Moviedata>> get() = similarMoviesList
 
+    val isFavoriteMovie : MutableLiveData<Boolean> by lazy {
+        getDataManager().getdatabaseRepository().checkFavoriteMovie(AppConstants.currentMovie!!.id)
+    }
+    fun onFavoriteBtnClick() {
+        if(isFavoriteMovie.value!!){
+            getDataManager().getdatabaseRepository().deleteFavoriteMovie(AppConstants.currentMovie!!.id)
+            isFavoriteMovie.postValue(false)
+        }else{
+            getDataManager().getdatabaseRepository().addFavoriteMovie(AppConstants.currentMovie!!)
+            isFavoriteMovie.postValue(true)
+        }
+    }
 }

@@ -64,7 +64,7 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding, MoviesViewModel>() , 
 
     override fun onItemClick(view: View, item: Moviedata) {
         view.transitionName = item.poster_path
-        AppConstants.currentMovieId=item.id
+        AppConstants.currentMovie=item
         val extras = FragmentNavigatorExtras(view to item.poster_path.toString())
         val action = MoviesFragmentDirections.actionMoviesFragmentToMovieDetailsFragment(item)
         getNavController().navigate(action,extras)
