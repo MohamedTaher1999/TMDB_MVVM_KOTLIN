@@ -1,0 +1,2 @@
+# TMDB_MVVM_KOTLIN
+A movie guide app that helps you to discover different types of movies categories in the TMDB API , movie details , movie trailers , movie reviews and adding movies to your watchlist. Implementing MVVM architecture using Hilt, Coroutines, Retrofit, LiveData, RoomDatabase, DataBinding, Paging and Navigation Component Applying Clean Code using OOP , SOLID Priciples , Helper Classes and Repository Pattern.
